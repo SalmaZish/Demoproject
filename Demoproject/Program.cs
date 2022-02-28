@@ -34,13 +34,11 @@ namespace Demoproject
             {
                 Console.WriteLine("logged in successful test passed");
                 Console.WriteLine("end of test pass");
-
-
-
             }
             else
             {
                 Console.WriteLine("test fail");
+                Console.WriteLine("end of test fail");
 
             }
 
