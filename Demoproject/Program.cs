@@ -33,6 +33,8 @@ namespace Demoproject
             if (findloginuser.Text == "Hello hari!")
             {
                 Console.WriteLine("logged in successful test passed");
+                Console.WriteLine("end of test pass");
+
 
 
             }
