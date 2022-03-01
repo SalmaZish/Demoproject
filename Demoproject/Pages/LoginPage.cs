@@ -1,16 +1,20 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Demoproject
+namespace Demoproject.Pages
 {
-    internal class Program
+    internal class LoginPage
     {
-        static void Main(string[] args)
+       public void MyLoginPage(IWebDriver mydriver)
         {
             // OPEN CHROME BROWSER
-            IWebDriver mydriver = new ChromeDriver();
-            mydriver .Manage().Window.Maximize();
+           //  IWebDriver mydriver = new ChromeDriver();
+           // mydriver.Manage().Window.Maximize();
 
             // LAUNCH TURNUP PORTAL
             mydriver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
@@ -41,13 +45,6 @@ namespace Demoproject
                 Console.WriteLine("end of test fail");
 
             }
-
-
-
-
-
-
         }
     }
 }
-
