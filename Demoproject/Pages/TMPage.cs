@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using NUnit.Framework;
 
 namespace Demoproject
 {
     internal class TMPage
     {
-        public void MMyCreateTm(IWebDriver mydriver) 
+        public void MyCreateTm(IWebDriver mydriver) 
         {
             // Create Time and Materials record
 
@@ -57,17 +58,81 @@ namespace Demoproject
             IWebElement actualCode = mydriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
             ////*[@id="tmsGrid"]/div[3]/table/tbody/tr[10]/td[1]
             /////*[@id="tmsGrid"]/div[3]/table/tbody/tr[6]/td[1]
-
+            Assert.That(actualCode.Text == "12", "Actual Code does not match");
             if (actualCode.Text == "12")
             {
-                Console.WriteLine("code present then Test pass ");
+                Assert.Pass("code present then Test pass ");
 
             }
             else
             {
 
-                Console.WriteLine("Missing code then Test fail");
+                Assert.Fail("Missing code then Test fail");
             }
+
+            //if (actualCode.Text == "12")
+            //{
+            //    Console.WriteLine("code present then Test pass ");
+
+            //}
+            //else
+            //{
+
+            //    Console.WriteLine("Missing code then Test fail");
+            //}
+        }
+
+        public void myEdit(IWebDriver myDriver)
+        {
+            Thread.Sleep(2000);
+            //click on go to last page buton
+            IWebElement Lastpagebutton = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            Lastpagebutton.Click();
+            IWebElement actualCode = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+            if (actualCode.Text == "12")
+            {
+                //Click the Edit Button
+                IWebElement Edit = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+                Edit.Click();
+
+
+            }
+
+            //Change the code
+            IWebElement Entercode = myDriver.FindElement(By.Id("Code"));
+            Entercode.Clear();
+            Entercode.SendKeys("13");
+
+            //change the Description
+
+            IWebElement Discription = myDriver.FindElement(By.Id("Description"));
+            Discription.Clear();
+            Discription.SendKeys("change");
+
+
+            //change the price per unit
+
+            IWebElement PriceperUnit = myDriver.FindElement(By.Id("Price"));
+            PriceperUnit.Clear();
+            PriceperUnit.SendKeys("34");
+
+
+            // Click on Save button
+            IWebElement SaveButton = myDriver.FindElement(By.Id("SaveButton"));
+
+            SaveButton.Click();
+            Thread.Sleep(1000);
+
+            //click on go to last page buton
+            IWebElement Lastpage = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+            Lastpage.Click();
+
+            Thread.Sleep(1000);
+
+
+            Assert.That(Entercode.Text == "12", "Code record hasn't been edited.");
+
+
         }
     }
 }
