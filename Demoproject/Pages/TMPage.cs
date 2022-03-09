@@ -112,9 +112,18 @@ namespace Demoproject
 
             //change the price per unit
 
-            IWebElement PriceperUnit = myDriver.FindElement(By.Id("Price"));
+            /*IWebElement PriceperUnit = myDriver.FindElement(By.Id("Price"));
             PriceperUnit.Clear();
-            PriceperUnit.SendKeys("34");
+            PriceperUnit.SendKeys("34");*/
+            // Edit price
+            IWebElement priceTag = myDriver.FindElement(By.XPath("//*[@id='TimeMaterialEditForm']/div/div[4]/div/span[1]/span/input[1]"));
+            IWebElement priceTextbox = myDriver.FindElement(By.Id("Price"));
+
+            priceTag.Click();
+            priceTextbox.Clear();
+            priceTag.Click();
+            priceTextbox.SendKeys("55");
+
 
 
             // Click on Save button
@@ -128,11 +137,39 @@ namespace Demoproject
             Lastpage.Click();
 
             Thread.Sleep(1000);
+               
+            // Assertion
+            IWebElement createdCode = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+                                                                         
+            IWebElement createdTypeCode = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+            IWebElement createdDescription = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            IWebElement createdPrice = myDriver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
 
-            Assert.That(Entercode.Text == "12", "Code record hasn't been edited.");
+            Assert.That(createdCode.Text == "13", "Code record hasn't been edited.");
 
 
         }
+
+        public void Delete(IWebDriver driver)
+        {
+            Thread.Sleep(2000);
+
+            // click on go to lsast page button
+            IWebElement GoToLastPageButton = driver.FindElement(By.XPath("/*[@id='tmsGrid'/div[4]/a[4]/span"));
+            GoToLastPageButton.Click();
+
+            IWebElement findEditedRecord = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
+
+            // click on delete button
+            // In Pop up message box select yes
+            driver.SwitchTo().Alert().Dismiss();
+            // Refresh page
+            // go to last page button
+            //check if the deleted row is present  or not
+        }
+
+
+
     }
 }

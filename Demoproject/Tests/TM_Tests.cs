@@ -16,27 +16,15 @@ namespace Demoproject.Pages
         //    LoginFunction();
         //}
 
-            [SetUp]
-            public static void LoginFunction()
-        {
-
-            //// OPEN CHROME BROWSER
-           Driver = new ChromeDriver();
-           Driver.Manage().Window.Maximize();
-
-            // Call login Page
-            LoginPage LoginObj = new LoginPage();
-            LoginObj.MyLoginPage(Driver);
-
-            // Call homepage
-            HomePage HomeObj = new HomePage();
-            HomeObj.MyHomePage(Driver);
-
-        }
+           
 
        [Test,Order (1), Description("check create worked")]
         public void CreatFunction()
         {
+            // Call homepage
+            HomePage HomeObj = new HomePage();
+            HomeObj.MyHomePage(Driver);
+
             // Call TMPage
             TMPage TMObj = new TMPage();
             TMObj.MyCreateTm(Driver);
@@ -46,17 +34,21 @@ namespace Demoproject.Pages
        [Test, Order(2), Description("check edit worked")]
         public void EditFunction()
         {
+            // Call homepage
+            HomePage HomeObj = new HomePage();
+            HomeObj.MyHomePage(Driver);
+
             // Call TMPage
             TMPage TMObj = new TMPage();
             TMObj.myEdit(Driver);
         }
 
-       // [Test]
+    [Test]
         public void DeleteFunction()
         {
-            // Call TMPage
-            //TMPage TMObj = new TMPage();
-            //TMObj.MMyCreateTm(Driver);
+            //Call TMPage
+            TMPage TMObj = new TMPage();
+            TMObj.Delete(Driver);
         }
 
        // [Test]
