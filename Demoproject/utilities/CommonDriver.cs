@@ -10,7 +10,7 @@ using Demoproject.Pages;
 
 namespace Demoproject.utilities
 {
-    internal class CommonDriver
+    public class CommonDriver
     {
         public static IWebDriver Driver;
 

@@ -40,7 +40,7 @@ namespace Demoproject.Pages
 
             // Call TMPage
             TMPage TMObj = new TMPage();
-            TMObj.myEdit(Driver);
+            TMObj.myEdit(Driver, "dummy", "dummy2", "dummy3");
         }
 
     [Test]
